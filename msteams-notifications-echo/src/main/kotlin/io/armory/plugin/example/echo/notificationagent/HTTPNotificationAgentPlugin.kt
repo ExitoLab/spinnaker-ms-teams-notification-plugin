@@ -30,10 +30,12 @@ class HTTPNotificationAgent(config: HTTPNotificationConfig, pluginSdks: PluginSd
 
   override fun sendNotifications(notification: MutableMap<String, Any>, application: String, event: Event, status: String) {
     val nc = notification.asNotificationConfig()
-    client.post(Request(AGENT_NAME, nc.path ?: "").setBody(event))
+    client.post(Request(AGENT_NAME, nc.path ?: "").setBody(TeamsEvent(event)))
   }
 
   private fun MutableMap<String, Any>.asNotificationConfig() = mapper.convertValue<NotificationConfig>(this)
 }
+
+data class TeamsEvent(private val event: Event, val text: String = event.rawContent)
 
 data class NotificationConfig(val path: String?)
