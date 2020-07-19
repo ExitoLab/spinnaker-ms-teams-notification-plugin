@@ -25,5 +25,3 @@ export const MicrosoftTeamsNotificationType = (props: INotificationTypeCustomCon
   );
 }
 
-
-.tsx

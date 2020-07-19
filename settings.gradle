@@ -6,9 +6,9 @@ pluginManagement {
   }
 }
 
-rootProject.name="notificationAgent"
+rootProject.name="msteams-notifications"
 
-include "notification-agent-echo", "notification-agent-deck"
+include "msteams-notifications-echo", "msteams-notifications-deck"
 
 def setBuildFile(project) {
   project.buildFileName = "${project.name}.gradle"
