@@ -6,8 +6,6 @@ pluginManagement {
   }
 }
 
-rootProject.name="msteams-notifications"
-
 include "msteams-notifications-echo", "msteams-notifications-deck"
 
 def setBuildFile(project) {
