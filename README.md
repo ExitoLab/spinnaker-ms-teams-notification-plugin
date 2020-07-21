@@ -18,10 +18,10 @@ to copy as a starting point for creating your own notification plugin!
 spinnaker:
   extensibility:
     plugins:
-      Armory.NotificationAgent:
+      ms-teams.notifications:
         enabled: true
         extensions:
-          armory.httpNotificationService:
+          ms-teams.notifications:
             enabled: true
             config:
               url: <fill-me-in>
