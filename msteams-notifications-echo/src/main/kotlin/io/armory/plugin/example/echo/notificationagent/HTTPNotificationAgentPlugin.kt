@@ -16,7 +16,7 @@ import org.pf4j.PluginWrapper
 class HTTPNotificationAgentPlugin(wrapper: PluginWrapper) : Plugin(wrapper)
 
 @Extension
-class HTTPNotificationAgent(config: HTTPNotificationConfig, pluginSdks: PluginSdks) : NotificationAgent {
+class HTTPNotificationAgent(private val config: HTTPNotificationConfig, pluginSdks: PluginSdks) : NotificationAgent {
   private val client: HttpClient
   private val AGENT_NAME = "http-notification-agent"
   private val mapper = jacksonObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -30,7 +30,10 @@ class HTTPNotificationAgent(config: HTTPNotificationConfig, pluginSdks: PluginSd
 
   override fun sendNotifications(notification: MutableMap<String, Any>, application: String, event: Event, status: String) {
     val nc = notification.asNotificationConfig()
-    client.post(Request(AGENT_NAME, nc.path ?: "").setBody(TeamsEvent(event)))
+    println("---> HTTP POST ${config.url}${nc.path}")
+    val res = client.post(Request(AGENT_NAME, nc.path ?: "").setBody(TeamsEvent(event)))
+    println("<--- HTTP ${res.statusCode} ${res.body}")
+    res.body.close()
   }
 
   private fun MutableMap<String, Any>.asNotificationConfig() = mapper.convertValue<NotificationConfig>(this)
