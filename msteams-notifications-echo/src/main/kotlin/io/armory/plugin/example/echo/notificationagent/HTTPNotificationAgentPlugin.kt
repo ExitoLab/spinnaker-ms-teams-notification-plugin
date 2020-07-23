@@ -26,7 +26,7 @@ class HTTPNotificationAgent(private val config: HTTPNotificationConfig, pluginSd
     client = pluginSdks.http().get(AGENT_NAME)
   }
 
-  override fun getNotificationType() = "http"
+  override fun getNotificationType() = "microsoftteams"
 
   override fun sendNotifications(notification: MutableMap<String, Any>, application: String, event: Event, status: String) {
     val nc = notification.asNotificationConfig()
