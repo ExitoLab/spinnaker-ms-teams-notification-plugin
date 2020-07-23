@@ -31,7 +31,8 @@ class HTTPNotificationAgent(private val config: HTTPNotificationConfig, pluginSd
   override fun sendNotifications(notification: MutableMap<String, Any>, application: String, event: Event, status: String) {
     val nc = notification.asNotificationConfig()
     println("---> HTTP POST ${config.url}${nc.path}")
-    val res = client.post(Request(AGENT_NAME, nc.path ?: "").setBody(TeamsEvent(event)))
+    val ev = mapper.writeValueAsString(event.content)
+    val res = client.post(Request(AGENT_NAME, nc.path ?: "").setBody(TeamsEvent(ev)))
     println("<--- HTTP ${res.statusCode} ${res.body}")
     res.body.close()
   }
@@ -39,6 +40,6 @@ class HTTPNotificationAgent(private val config: HTTPNotificationConfig, pluginSd
   private fun MutableMap<String, Any>.asNotificationConfig() = mapper.convertValue<NotificationConfig>(this)
 }
 
-data class TeamsEvent(private val event: Event, val text: String = event.rawContent)
+data class TeamsEvent(val text: String)
 
 data class NotificationConfig(val path: String?)

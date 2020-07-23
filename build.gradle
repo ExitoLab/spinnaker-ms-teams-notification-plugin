@@ -28,7 +28,7 @@ repositories {
 version = normalizedVersion()
 
 subprojects {
-  group = "io.armory.plugin.example.echo.notificationservice"
+  group = "io.armory.plugin.example.echo.notificationagent"
   version = rootProject.version
 }
 
