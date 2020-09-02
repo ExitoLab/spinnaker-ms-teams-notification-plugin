@@ -39,3 +39,7 @@ We're planning on adding a method to the `NotificationAgent` interface that
 would allow developers to define a set of parameters needed for the plugin
 (e.g., the Slack channel where the notification should be sent). Form fields
 for defining these parameters would be automatically generated in Spinnaker's UI.
+
+## Origin
+
+This plugin project originated at [Spinnaker Gardening Days](https://github.com/spinnaker-hackathon/gardening). If you're interested receiving support in extending this plugin or working on a project of your choice at a future gardening days, please share your ideas on the [Project Ideas page](https://github.com/spinnaker-hackathon/gardening/blob/master/project-ideas.md) and join us on [Spinnaker Slack](https://spinnakerteam.slack.com/archives/CV4A90DPF).
